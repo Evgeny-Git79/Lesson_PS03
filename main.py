@@ -1,6 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
+from googletrans import Translator
 
+from test import translator
+
+tranlator = Translator()
 # Создаём функцию, которая будет получать информацию
 def get_english_words():
     url = "https://randomword.com/"
@@ -30,15 +34,21 @@ def word_game():
         # Создаём функцию, чтобы использовать результат функции-словаря
         word_dict = get_english_words()
         word = word_dict.get("english_words")
+        word_ru = translator.translate(word, "ru").text
+        #print(word)
+        #print(translator.translate(word, "ru").text)
         word_definition = word_dict.get("word_definition")
+        word_definition_ru = translator.translate(word_definition, "ru").text
+        #print(word_definition)
+        #print(translator.translate(word_definition, "ru").text)
 
         # Начинаем игру
-        print(f"Значение слова - {word_definition}")
+        print(f"Значение слова - {word_definition_ru}")
         user = input("Что это за слово? ")
-        if user == word:
+        if user == word_ru:
             print("Все верно!")
         else:
-            print(f"Ответ неверный, было загадано это слово - {word}")
+            print(f"Ответ неверный, было загадано это слово - {word_ru}")
 
         # Создаём возможность закончить игру
         play_again = input("Хотите сыграть еще раз? y/n")
