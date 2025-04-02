@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from googletrans import Translator
 
 # Создаём функцию, которая будет получать информацию
 def get_english_words():
